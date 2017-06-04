@@ -44,9 +44,9 @@ public class loginController {
                Account account = dbHelper.getAccountByUsername(username);
                //creating a new session
                session = new Session();
-               session.setPrefs(account.getUsername(),true,account.getAccType());
+               session.setPrefs(account.getUsername(),true,account.getAccType(),account.getEmail());
                //setting the scene
-               Parent root = FXMLLoader.load(getClass().getResource("/UI/Layouts/accountSettings.fxml"));
+               Parent root = FXMLLoader.load(getClass().getResource("/UI/Layouts/emailsDisplay.fxml"));
                Scene scene = new Scene(root);
                //setting the stage
                Stage stage = new Stage();

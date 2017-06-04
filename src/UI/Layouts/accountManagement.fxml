@@ -33,7 +33,7 @@
                         <PasswordField fx:id="passwordPF" promptText="Mot de passe" />
                         <PasswordField fx:id="confirmPasswordPF" promptText="Confirmer le mot de passe" />
                         <TextField fx:id="emailTF" promptText="Email" />
-                        <ComboBox fx:id="accTypeCB" prefHeight="25.0" prefWidth="95.0" />
+                        <ComboBox fx:id="accTypeCB" prefHeight="25.0" prefWidth="115.0" />
                      </children>
                   </VBox>
                   <Button fx:id="addButton" layoutX="375.0" layoutY="262.0" mnemonicParsing="false" onAction="#onAddClick" text="Ajouter" AnchorPane.rightAnchor="20.0" />

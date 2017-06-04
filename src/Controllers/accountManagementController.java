@@ -164,7 +164,7 @@ public class accountManagementController {
     }
 
     @FXML private void initialize() {
-        accTypeCB.getItems().addAll("Employer", "Admin");
+        accTypeCB.getItems().addAll("Gestionnaire", "Admin");
         accTypeCB.setValue(accTypeCB.getItems().get(0));
     }
 }
