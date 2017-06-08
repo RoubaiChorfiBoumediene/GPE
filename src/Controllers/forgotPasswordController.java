@@ -2,6 +2,10 @@ package Controllers;
 
 import Entities.Account;
 import Tools.DB.DBHelper;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -18,9 +22,9 @@ import java.util.Properties;
  * Created by Ashraf on 10/05/2017.
  */
 public class forgotPasswordController {
-    @FXML TextField emailTF;
-    @FXML ComboBox retriveMethodCB;
-    @FXML Button ResetButton;
+    @FXML private JFXTextField emailTF;
+    @FXML private JFXButton ResetButton;
+    @FXML private ComboBox retriveMethodCB;
     @FXML Label invalidInfoLable;
 
 
@@ -28,39 +32,43 @@ public class forgotPasswordController {
         String text = emailTF.getText();//get the text from the text field
         if(text!=null && !text.isEmpty()){
             if(areYouOnline()){ //check if there is internet connection
-                String retriveMethod = retriveMethodCB.getSelectionModel().getSelectedItem().toString(); //get the selected method(username or email)
-                DBHelper dbHelper = new DBHelper();
-                Account account ;
-                if(retriveMethod.equals("Nom d'utilisateur")){//if the selected method is username
-                    account = dbHelper.getAccountByUsername(text); //search for the account with that username
-                    if(account != null) { // if there is a match in the result of the search
-                        String newPass = passwordGenerator(12); //create new password
-                        dbHelper.changeAccountPassword(account.getUsername(),newPass); //change the password
-                        sendEmail(account.getEmail(),newPass);//send email with the new password
-                        emailTF.clear(); //clear the textfield
-                        if(!invalidInfoLable.getText().isEmpty()) invalidInfoLable.setText("");
-                        new Alert(Alert.AlertType.INFORMATION,
-                                "un mot de passe a été envoyé vers votre email !").showAndWait();
-                    } else  {
-                        invalidInfoLable.setText("Le nom d'utilisateur entré ne correspond à aucun compte");
-                        invalidInfoLable.setStyle("-fx-font-weight: bold;-fx-text-fill: #ff484b");
+                //waiting message
+                invalidInfoLable.setText("Soyez patient s'il vous plaît...");
+                invalidInfoLable.setStyle("-fx-font-weight: bold;-fx-text-fill: #1663ab");
+                Platform.runLater(() ->{
+                    String retriveMethod = retriveMethodCB.getSelectionModel().getSelectedItem().toString(); //get the selected method(username or email)
+                    DBHelper dbHelper = new DBHelper();
+                    Account account ;
+                    if(retriveMethod.equals("Nom d'utilisateur")){//if the selected method is username
+                        account = dbHelper.getAccountByUsername(text); //search for the account with that username
+                        if(account != null) { // if there is a match in the result of the search
+                            String newPass = passwordGenerator(12); //create new password
+                            dbHelper.changeAccountPassword(account.getUsername(),newPass); //change the password
+                            sendEmail(account.getEmail(),newPass);//send email with the new password
+                            emailTF.clear(); //clear the textfield
+                            if(!invalidInfoLable.getText().isEmpty()) invalidInfoLable.setText("");
+                            new Alert(Alert.AlertType.INFORMATION,
+                                    "un mot de passe a été envoyé vers votre email !").showAndWait();
+                        } else  {
+                            invalidInfoLable.setText("Le nom d'utilisateur entré ne correspond à aucun compte");
+                            invalidInfoLable.setStyle("-fx-font-weight: bold;-fx-text-fill: #ff484b");
+                        }
+                    }else{ //if the selected method is email
+                        account = dbHelper.getAccountByEmail(text); //search for the account with that email
+                        if(account != null) { //if there is a match in the result of the search
+                            String newPass = passwordGenerator(12); //create new password
+                            dbHelper.changeAccountPassword(account.getUsername(),newPass); //change the password
+                            sendEmail(account.getEmail(),newPass); //send email with the new password
+                            emailTF.clear();
+                            if(!invalidInfoLable.getText().isEmpty()) invalidInfoLable.setText("");
+                            new Alert(Alert.AlertType.INFORMATION,
+                                    "un mot de passe a été envoyé vers votre email !").showAndWait();
+                        } else {
+                            invalidInfoLable.setText("L'email entré ne correspond à aucun compte");
+                            invalidInfoLable.setStyle("-fx-font-weight: bold;-fx-text-fill: #ff484b");
+                        }
                     }
-                }else{ //if the selected method is email
-                    account = dbHelper.getAccountByEmail(text); //search for the account with that email
-                    if(account != null) { //if there is a match in the result of the search
-                        String newPass = passwordGenerator(12); //create new password
-                        dbHelper.changeAccountPassword(account.getUsername(),newPass); //change the password
-                        sendEmail(account.getEmail(),newPass); //send email with the new password
-                        emailTF.clear();
-                        if(!invalidInfoLable.getText().isEmpty()) invalidInfoLable.setText("");
-                        new Alert(Alert.AlertType.INFORMATION,
-                                "un mot de passe a été envoyé vers votre email !").showAndWait();
-                    } else {
-                        invalidInfoLable.setText("L'email entré ne correspond à aucun compte");
-                        invalidInfoLable.setStyle("-fx-font-weight: bold;-fx-text-fill: #ff484b");
-                        invalidInfoLable.setTranslateX(40);
-                    }
-                }
+                        });
             } else new Alert(javafx.scene.control.Alert.AlertType.ERROR,
                     "Problème de connexion Internet.\n" +
                             "S'il vous plaît vérifiez vos paramètres Internet").showAndWait();
@@ -141,6 +149,8 @@ public class forgotPasswordController {
         }
         return emailSent;
     }
+
+
     @FXML private void initialize() {
         retriveMethodCB.getItems().addAll("Nom d'utilisateur", "Email");
         retriveMethodCB.setValue(retriveMethodCB.getItems().get(0));

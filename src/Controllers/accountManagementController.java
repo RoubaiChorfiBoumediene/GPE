@@ -3,6 +3,9 @@ package Controllers;
 import Entities.Account;
 import Tools.DB.DBHelper;
 import Tools.Session;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,12 +20,14 @@ import java.util.regex.Pattern;
  * Created by Ashraf on 02/05/2017.
  */
 public class accountManagementController {
-    @FXML private TextField usernameAddTF;
-    @FXML private TextField passwordPF;
-    @FXML private TextField confirmPasswordPF;
-    @FXML private TextField emailTF;
-    @FXML private ComboBox<String> accTypeCB;
-    @FXML private TextField searchTF;
+
+
+    @FXML private JFXTextField usernameAddTF;
+    @FXML private JFXPasswordField passwordPF;
+    @FXML private JFXPasswordField confirmPasswordPF;
+    @FXML private JFXTextField emailTF;
+    @FXML private JFXComboBox<String> accTypeCB;
+    @FXML private JFXTextField searchTF;
     @FXML private TableView<Account> tableTV;
     @FXML private TableColumn<Account, String> usernameTC;
     @FXML private TableColumn<Account, String> accTypeTC;
@@ -41,15 +46,17 @@ public class accountManagementController {
             if (validPassword(password, confirmPassword)) { //verify the password
                 if (validEmail(email)) { //verify the email
                     if (validUsername(username)) { //verify the username
-                        DBHelper dbHelper = new DBHelper();
-                        if (dbHelper.addAccount(username, password, email, accType)) { //add account into the DB
-                            new Alert(Alert.AlertType.INFORMATION, "Compte ajouté avec succès !").showAndWait();
-                            usernameAddTF.setText("");
-                            passwordPF.setText("");
-                            confirmPasswordPF.setText("");
-                            emailTF.setText("");
-                            accTypeCB.setValue(accTypeCB.getItems().get(0));
-                        } else new Alert(Alert.AlertType.ERROR, "Échec de l'ajout d'un nouveau compte").showAndWait();
+                        if (accType!=null && !accType.isEmpty()){
+                            DBHelper dbHelper = new DBHelper();
+                            if (dbHelper.addAccount(username, password, email, accType)) { //add account into the DB
+                                new Alert(Alert.AlertType.INFORMATION, "Compte ajouté avec succès !").showAndWait();
+                                usernameAddTF.setText("");
+                                passwordPF.setText("");
+                                confirmPasswordPF.setText("");
+                                emailTF.setText("");
+                                accTypeCB.setValue(accTypeCB.getItems().get(0));
+                            } else new Alert(Alert.AlertType.ERROR, "Échec de l'ajout d'un nouveau compte").showAndWait();
+                        } else new Alert(Alert.AlertType.ERROR, "il faut sélectionnez une valeur pour le type de compte").showAndWait();
                     } else new Alert(Alert.AlertType.ERROR, "Ce nom d'utilisateur est invalide ou existe déjà").showAndWait();
                 }
             }
@@ -155,8 +162,8 @@ public class accountManagementController {
         accTypeTC.setCellValueFactory(new PropertyValueFactory<Account, String>("accType"));
         emailTC.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
         DBHelper dbHelper = new DBHelper();
-        accountsList.clear();
         //to clear the previous search list
+        accountsList.clear();
         tableTV.setItems(accountsList);
         //to set the actual present accounts in the database
         accountsList.addAll(dbHelper.getAccountList());
@@ -165,6 +172,5 @@ public class accountManagementController {
 
     @FXML private void initialize() {
         accTypeCB.getItems().addAll("Gestionnaire", "Admin");
-        accTypeCB.setValue(accTypeCB.getItems().get(0));
     }
 }

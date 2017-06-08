@@ -3,6 +3,9 @@ package Controllers;
 import Entities.Account;
 import Tools.DB.DBHelper;
 import Tools.Session;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -22,10 +26,11 @@ import java.io.IOException;
  * Created by Ashraf on 30/04/2017.
  */
 public class loginController {
-   @FXML private Button loginButton;
-   @FXML private TextField usernameTF;
-   @FXML private PasswordField passwordF;
+    @FXML private JFXTextField usernameTF;
+    @FXML private JFXPasswordField passwordF;
+    @FXML private JFXButton loginButton;
    @FXML private Label errorMessage = new Label();
+   @FXML private Hyperlink forgotPasswordLink;
 
    private DBHelper dbHelper = new DBHelper();
    int nbrTries = 3;
@@ -46,7 +51,7 @@ public class loginController {
                session = new Session();
                session.setPrefs(account.getUsername(),true,account.getAccType(),account.getEmail());
                //setting the scene
-               Parent root = FXMLLoader.load(getClass().getResource("/UI/Layouts/emailsDisplay.fxml"));
+               Parent root = FXMLLoader.load(getClass().getResource("/UI/Layouts/accountSettings.fxml"));
                Scene scene = new Scene(root);
                //setting the stage
                Stage stage = new Stage();
@@ -81,6 +86,8 @@ public class loginController {
            Stage stage = new Stage();
            stage.setTitle("récupération de mot de passe");
            stage.setScene(scene);
+           stage.initModality(Modality.APPLICATION_MODAL);
+           stage.initOwner(forgotPasswordLink.getScene().getWindow());
            stage.show();
        } catch (IOException e) {
            e.printStackTrace();

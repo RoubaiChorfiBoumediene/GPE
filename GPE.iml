@@ -10,5 +10,6 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.38-bin" level="project" />
     <orderEntry type="library" name="itextpdf-5.4.2" level="project" />
     <orderEntry type="library" name="mail" level="project" />
+    <orderEntry type="library" name="jfoenix" level="project" />
   </component>
 </module>

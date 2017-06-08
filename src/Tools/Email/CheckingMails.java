@@ -38,6 +38,7 @@ public class CheckingMails {
 
             // retrieve the messages from the folder in an array and print it
             Message[] messages = emailFolder.getMessages();
+            //clearing old data
             emailsList.clear();
             for (int i = 0, n = messages.length; i < n; i++) {
                 Message message = messages[i];

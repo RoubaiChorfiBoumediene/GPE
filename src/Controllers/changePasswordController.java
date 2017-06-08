@@ -3,6 +3,7 @@ package Controllers;
 import Entities.Account;
 import Tools.DB.DBHelper;
 import Tools.Session;
+import com.jfoenix.controls.JFXPasswordField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,10 +14,9 @@ import javafx.scene.control.PasswordField;
  * Created by Ashraf on 01/05/2017.
  */
 public class changePasswordController {
-    @FXML private PasswordField oldPasswordPF;
-    @FXML private PasswordField newPasswordPF;
-    @FXML private PasswordField confirmPasswordPF;
-    @FXML private Button updateButton;
+    @FXML private JFXPasswordField oldPasswordPF;
+    @FXML private JFXPasswordField newPasswordPF;
+    @FXML private JFXPasswordField confirmPasswordPF;
 
     public void onUpdateButtonClick(ActionEvent actionEvent){
         String oldPassword = oldPasswordPF.getText();

@@ -115,7 +115,7 @@ public class emailsController {
         TableColumn<EmailDisplay,String> emailDateColumn = new TableColumn<>("Date");
         emailDateColumn.setCellValueFactory
                 (new PropertyValueFactory<EmailDisplay, String>("sentDate"));
-        emailDateColumn.setPrefWidth(139);
+        emailDateColumn.setPrefWidth(138);
 
         //add the column to the table
         emailContentTable.getColumns().addAll(emailNumberColumn,emailFromColumn,emailDateColumn,emailSubjectColumn);
