@@ -3,6 +3,7 @@ package Tools.Email;
 /**
  * Created by Ashraf on 04/06/2017.
  */
+import Controllers.emailsController;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
@@ -38,10 +39,18 @@ public class CheckingMails {
 
             // retrieve the messages from the folder in an array and print it
             Message[] messages = emailFolder.getMessages();
-            //clearing old data
+            //clearing old data and set connected to true
             emailsList.clear();
+            emailsController.connected = true;
             for (int i = 0, n = messages.length; i < n; i++) {
+                System.out.println(i);
                 Message message = messages[i];
+//                String senderDomain = message.getFrom()[0].toString().substring
+//                        (message.getFrom()[0].toString().length()-11,message.getFrom()[0].toString().length()-1);
+//                System.out.println(senderDomain);
+                if (!message.getFrom()[0].toString().substring
+                        (message.getFrom()[0].toString().length()-11,message.getFrom()[0].toString().length()-1).equals
+                        ("esi-sba.dz")) continue;
                 EmailDisplay emailDisplay = new EmailDisplay();
                 emailDisplay.setNumber(i+1);
                 emailDisplay.setSubject(message.getSubject());

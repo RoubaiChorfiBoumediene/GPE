@@ -43,6 +43,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("GPE");
         primaryStage.setScene(scene);
+        System.out.println(DBHelper.passHash("admin"));
         primaryStage.show();
 
 
