@@ -1,0 +1,13 @@
+.jfx-button{
+    -fx-background-color: #78909c; 
+    -fx-text-fill: white;
+}
+
+.jfx-button:hover{
+    -fx-background-color:  #212121;
+}
+
+.jfx-button:pressed{
+    
+   -fx-rotate: 10;
+}

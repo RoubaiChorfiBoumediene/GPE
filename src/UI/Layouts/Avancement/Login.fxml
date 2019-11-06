@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="546.0" style="-fx-background-color: linear-gradient( from 50% 0% to 50% 100%,#31445A,#298DC5); -fx-background-radius: 9;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Avancement.LoginController">
+   <children>
+      <Pane layoutX="63.0" layoutY="52.0" prefHeight="30.0" prefWidth="418.0" style="-fx-background-color: rgb(150, 174, 191); -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <AnchorPane layoutX="51.0" layoutY="65.0" prefHeight="429.0" prefWidth="446.0" style="-fx-background-color: rgb(233, 240, 245); -fx-background-radius: 9;">
+         <children>
+            <JFXTextField labelFloat="true" layoutX="117.0" layoutY="129.0" prefHeight="34.0" prefWidth="223.0" promptText="User" unFocusColor="#18145e">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField focusColor="#1b0f97" labelFloat="true" layoutX="117.0" layoutY="193.0" prefHeight="34.0" prefWidth="223.0" promptText="Passwword" unFocusColor="#130e65">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <ImageView fx:id="imgProgress" fitHeight="85.0" fitWidth="64.0" layoutX="196.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGE/loading.gif" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="181.0" layoutY="288.0" prefHeight="31.0" prefWidth="97.0" stylesheets="@../CSS/ButtonBleu.css" text="Login">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <Text fill="#e80f0f" layoutX="261.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe oublié?">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <MaterialDesignIconView fill="#1a73ba" glyphName="ACCOUNT_CIRCLE" layoutX="180.0" layoutY="93.0" size="100" />
+            <FontAwesomeIconView glyphName="USER" layoutX="79.0" layoutY="160.0" size="30" />
+            <FontAwesomeIconView glyphName="LOCK" layoutX="80.0" layoutY="224.0" size="33" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -33,7 +33,7 @@
                         <Font size="13.0" />
                      </font>
                   </JFXPasswordField>
-                  <JFXTextField fx:id="emailTF" focusColor="#09b6bc" labelFloat="true" layoutX="80.0" layoutY="167.0" maxWidth="317.0" minWidth="291.0" prefHeight="35.0" prefWidth="317.0" promptText="Email" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+                  <JFXTextField fx:id="emailTF" focusColor="#09b6bc" labelFloat="true" layoutX="80.0" layoutY="167.0" maxWidth="317.0" minWidth="291.0" prefHeight="35.0" prefWidth="317.0" promptText="Tools.Email" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -75,7 +75,7 @@
                      <columns>
                         <TableColumn fx:id="usernameTC" prefWidth="127.0" text="Nom d'utilisateur" />
                         <TableColumn fx:id="accTypeTC" prefWidth="104.0" text="Type de compte" />
-                        <TableColumn fx:id="emailTC" prefWidth="264.0" text="Email" />
+                        <TableColumn fx:id="emailTC" prefWidth="264.0" text="Tools.Email" />
                      </columns>
                   </TableView>
                </children>

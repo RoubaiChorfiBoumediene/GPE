@@ -3,7 +3,6 @@ package Controllers;
 import Entities.Account;
 import Tools.DB.DBHelper;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -152,7 +151,7 @@ public class forgotPasswordController {
 
 
     @FXML private void initialize() {
-        retriveMethodCB.getItems().addAll("Nom d'utilisateur", "Email");
+        retriveMethodCB.getItems().addAll("Nom d'utilisateur", "Tools/Email");
         retriveMethodCB.setValue(retriveMethodCB.getItems().get(0));
     }
 }

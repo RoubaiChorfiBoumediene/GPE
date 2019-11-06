@@ -81,7 +81,7 @@ public class loginController {
 
    public void onForgotPasswordClick(){
        try {
-           Parent root = FXMLLoader.load(getClass().getResource("/UI/Layouts/forgotPassword.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("/UI/Layouts/Administration/forgotPassword.fxml"));
            Scene scene = new Scene(root);
            Stage stage = new Stage();
            stage.setTitle("récupération de mot de passe");

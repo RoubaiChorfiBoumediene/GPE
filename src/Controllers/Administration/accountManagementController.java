@@ -48,7 +48,7 @@ public class accountManagementController {
                     if (validUsername(username)) { //verify the username
                         if (accType!=null && !accType.isEmpty()){
                             DBHelper dbHelper = new DBHelper();
-                            if (dbHelper.addAccount(username, password, email, accType)) { //add account into the DB
+                            if (dbHelper.addAccount(username, password, email, accType)) { //add account into the Tools.DB
                                 new Alert(Alert.AlertType.INFORMATION, "Compte ajouté avec succès !").showAndWait();
                                 usernameAddTF.setText("");
                                 passwordPF.setText("");

@@ -22,7 +22,7 @@ public class accountSettingsController {
     @FXML public void OnChangePasswordClick(ActionEvent actionEvent){
         try {
             //setting the new scene
-            Main.setRoot(FXMLLoader.load(getClass().getResource("/UI/Layouts/changePassword.fxml")));
+            Main.setRoot(FXMLLoader.load(getClass().getResource("/UI/Layouts/Administration/changePassword.fxml")));
             Scene scene = new Scene(Main.getRoot());
             Stage stage =  Main.getStage();
             Main.setStage(stage);
@@ -39,7 +39,7 @@ public class accountSettingsController {
     @FXML public void OnAccountManagementClick(ActionEvent actionEvent){
         try {
             //setting the new scene
-            Main.setRoot(FXMLLoader.load(getClass().getResource("/UI/Layouts/accountManagement.fxml")));
+            Main.setRoot(FXMLLoader.load(getClass().getResource("/UI/Layouts/Administration/accountManagement.fxml")));
             Scene scene = new Scene(Main.getRoot());
             Stage stage = Main.getStage();
 
